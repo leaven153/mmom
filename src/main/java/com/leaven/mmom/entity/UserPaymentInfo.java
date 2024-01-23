@@ -38,11 +38,12 @@ public class UserPaymentInfo {
     // 분석용 목록을 화면 상에서 별도로 만드는 것이 낫겠다고 판단함.
 //    @OneToOne(mappedBy = "userPaymentInfo", optional = false, fetch = FetchType.LAZY)
 //    private User user;
+
     private Long userId;
     private LocalDate userBirth;
     private String userTel;
 
-    private LocalDateTime createdAt;
+    private LocalDateTime startedAt;
     private LocalDateTime payAt;
     private String paymentType;
 
