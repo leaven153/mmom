@@ -1,11 +1,16 @@
 package com.leaven.mmom.entity;
 
-import jakarta.persistence.*;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 
 /**********
  * class:
@@ -17,20 +22,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class SubscribeModule {
+public class RefreshToken {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String moduleName;
-    private Long modulePrice;
+    private Long userId;
+    private String refreshToken;
+    private LocalDateTime createAt;
 
-    @Column(nullable = true)
-    private String moduleOpt1;
-
-    @Column(nullable = true)
-    private String moduleOpt2;
-
-    @Column(nullable = true)
-    private String moduleOpt3;
 }

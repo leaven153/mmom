@@ -11,8 +11,8 @@ import java.time.LocalDateTime;
 
 /**********
  * class: 유료 서비스를 구독하는 회원의 정보
- * 필드: id, 서비스id, 회원id, 회원생년월일, 회원연락처, 서비스시작일, 비용납부일, 납부형태
- * 연관관계매핑: subscribeModule - 서비스id(1명의 회원이 구독하는 서비스는 1개이다.)
+ * field: id, 서비스id, 회원id, 회원생년월일, 회원연락처, 서비스시작일, 비용납부일, 납부형태
+ * mapping: subscribeModule - 서비스id(1명의 회원이 구독하는 서비스는 1개이다.)
  * **********/
 @Entity
 @Builder

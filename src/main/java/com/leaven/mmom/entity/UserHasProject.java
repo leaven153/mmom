@@ -6,5 +6,5 @@ package com.leaven.mmom.entity;
  * field:
  * mapping:
  **********/
-public class TaskComment {
+public class UserHasProject {
 }
