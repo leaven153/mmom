@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
 
 
 /**********
- * class:
- * field:
+ * class: 추상클래스(생성일자, 업데이트일자)
+ * field: 생성일자, 업데이트일자
  * mapping:
  **********/
 @MappedSuperclass // 테이블로 생성되지 않는다.

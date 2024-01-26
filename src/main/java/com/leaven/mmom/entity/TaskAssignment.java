@@ -2,10 +2,11 @@ package com.leaven.mmom.entity;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.LocalDateTime;
 
 /**********
  * class:
@@ -14,10 +15,9 @@ import lombok.NoArgsConstructor;
  * !mapping:
  **********/
 @Entity
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@EntityListeners(value = {AuditingEntityListener.class})
 public class TaskAssignment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,4 +32,14 @@ public class TaskAssignment {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-}
+
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
+
+    @Builder
+    public TaskAssignment(Long projectId, Task task, User user){
+        this.projectId = projectId;
+        this.task = task;
+        this.user = user;
+    }// end of constructor()
+} // end of class TaskAssignment

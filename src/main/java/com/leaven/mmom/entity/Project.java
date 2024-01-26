@@ -1,10 +1,7 @@
 package com.leaven.mmom.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -22,9 +19,7 @@ import java.time.LocalDateTime;
  * !mapping:
  **********/
 @Entity
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @EntityListeners(value = {AuditingEntityListener.class})
 @Table(name="mmom_project")
@@ -52,4 +47,11 @@ public class Project {
     private String projectStatus;
 
     private String projectURL;
+
+    @Builder
+    public Project(Long creator, String projectType, String projectName){
+        this.creator = creator;
+        this.projectType = projectType;
+        this.projectName = projectName;
+    }
 }

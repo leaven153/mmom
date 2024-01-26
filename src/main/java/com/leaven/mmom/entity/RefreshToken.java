@@ -5,24 +5,19 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 /**********
- * class:
- * field:
+ * class: JWT사용할 경우, 필요한 refreshToken 테이블.......................
+ * field: id, refresh토큰발급받을(은)사용자id, refresh토큰값
  * mapping:
  **********/
 @Entity
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class RefreshToken {
+public class RefreshToken extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +25,11 @@ public class RefreshToken {
 
     private Long userId;
     private String refreshToken;
-    private LocalDateTime createAt;
+
+    @Builder
+    public RefreshToken(Long userId, String refreshToken){
+        this.userId = userId;
+        this.refreshToken = refreshToken;
+    }
 
 }

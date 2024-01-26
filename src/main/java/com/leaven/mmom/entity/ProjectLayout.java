@@ -1,21 +1,17 @@
 package com.leaven.mmom.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 
 /**********
  * class:
  * field:
  * mapping:
+ * !mapping:
  **********/
 @Entity
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class ProjectLayout {
 
@@ -31,5 +27,11 @@ public class ProjectLayout {
     @Column(nullable = true)
     private Integer columnWidth;
 
-
-}
+    @Builder
+    public ProjectLayout(String columnName, Boolean columnShow, String columnType, Integer columnLocation){
+        this.columnName = columnName;
+        this.columnShow = columnShow;
+        this.columnType = columnType;
+        this.columnLocation = columnLocation;
+    } // end of constructor(without nullable)
+} // end of class ProjectLayout

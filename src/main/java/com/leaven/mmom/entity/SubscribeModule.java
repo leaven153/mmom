@@ -1,21 +1,16 @@
 package com.leaven.mmom.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 
 /**********
- * class:
- * field:
+ * class: 유료 서비스(모듈) 목록
+ * field: id, 서비스(모듈)명, 서비스(모듈)가격, 서비스(모듈)옵션1,2,3
  * mapping:
  **********/
 @Entity
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class SubscribeModule {
     @Id
@@ -33,4 +28,10 @@ public class SubscribeModule {
 
     @Column(nullable = true)
     private String moduleOpt3;
+
+    @Builder
+    public SubscribeModule(String moduleName, Long modulePrice){
+        this.moduleName = moduleName;
+        this.modulePrice = modulePrice;
+    }
 }

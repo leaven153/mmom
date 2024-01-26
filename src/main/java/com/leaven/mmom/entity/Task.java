@@ -1,10 +1,7 @@
 package com.leaven.mmom.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,16 +12,14 @@ import java.time.LocalDateTime;
  * field: id, 속한프로젝트id(fk, NN), task생성자(NN), task명(NN),
  *        task우선순위(높음, 보통, 낮음), task시작일, task마감일,
  *        상위taskid, 선행taskid, 후행taskid, task에 할당된 예산
- * mapping:
- * !mapping: project에 대한 정보를 task에서 소환할 일이 없다..?
+ * mapping: project
+ * !mapping:
  **********/
 @Entity
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access= AccessLevel.PROTECTED)
 @Getter
 @Table(name = "mmom_task")
-public class Task {
+public class Task extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,4 +55,10 @@ public class Task {
 
     @Column(nullable=true)
     private Long taskBudget;
+
+    @Builder
+    public Task(Long taskCreatedBy, String taskName){
+        this.taskCreatedBy = taskCreatedBy;
+        this.taskName = taskName;
+    }
 }

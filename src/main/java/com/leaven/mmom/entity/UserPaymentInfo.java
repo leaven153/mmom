@@ -1,10 +1,7 @@
 package com.leaven.mmom.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,11 +12,9 @@ import java.time.LocalDateTime;
  * mapping: subscribeModule - 서비스id(1명의 회원이 구독하는 서비스는 1개이다.)
  * **********/
 @Entity
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor (access = AccessLevel.PROTECTED)
 @Getter
-public class UserPaymentInfo {
+public class UserPaymentInfo extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -43,8 +38,17 @@ public class UserPaymentInfo {
     private LocalDate userBirth;
     private String userTel;
 
-    private LocalDateTime startedAt;
+
     private LocalDateTime payAt;
     private String paymentType;
 
-}
+    @Builder
+    public UserPaymentInfo(Long userId, LocalDate userBirth, String userTel, LocalDateTime payAt, String paymentType){
+        this.userId = userId;
+        this.userBirth = userBirth;
+        this.userTel = userTel;
+        this.payAt = payAt;
+        this.paymentType = paymentType;
+    } // end of Constructor(not all. without SubscribeModule)
+
+} // end of class UserPaymentInfo
