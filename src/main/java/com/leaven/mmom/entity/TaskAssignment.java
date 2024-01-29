@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @EntityListeners(value = {AuditingEntityListener.class})
-public class TaskAssignment {
+public class TaskAssignment extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,8 +33,8 @@ public class TaskAssignment {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @LastModifiedDate
-    private LocalDateTime updatedAt;
+//    @LastModifiedDate
+//    private LocalDateTime updatedAt;
 
     @Builder
     public TaskAssignment(Long projectId, Task task, User user){

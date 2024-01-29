@@ -3,6 +3,7 @@ package com.leaven.mmom.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -54,7 +55,7 @@ public class Task extends BaseEntity{
     private Long taskNextId;
 
     @Column(nullable=true)
-    private Long taskBudget;
+    private BigDecimal taskBudget;
 
     @Builder
     public Task(Long taskCreatedBy, String taskName){
