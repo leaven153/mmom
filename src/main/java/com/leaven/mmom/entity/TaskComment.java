@@ -2,21 +2,19 @@ package com.leaven.mmom.entity;
 
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**********
  * class:
  * field:
- * mapping:
- * !mapping: project가 사라질 때 task가 사라지면서 task가 사라질 때 댓글도 사라지게 하자. 프로젝트 굳이 매핑하지말공!
+ * mapping: task, user
+ * !mapping: project
  **********/
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@ToString(exclude = {"task", "user"})
 public class TaskComment extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,19 +23,22 @@ public class TaskComment extends BaseEntity{
     private Long projectId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+    @JoinColumn(name = "task_id")
+    private MmomTask mmomTask;
 
-    private String fileOriginName;
-    private String fileNewName;
-    private String filePath;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private MmomUser mmomUser;
+
+    private String comment;
 
     @Builder
-    public TaskComment(Long pId, User user, String fOriginName, String fNewName, String fPath){
+    public TaskComment(Long pId, MmomTask mmomTask, MmomUser mmomUser, String comment){
         this.projectId = pId;
-        this.user = user;
-        this.fileOriginName = fOriginName;
-        this.fileNewName = fNewName;
-        this.filePath = fPath;
+        this.mmomTask = mmomTask;
+        this.mmomUser = mmomUser;
+        this.comment = comment;
     } // end of constructor
+
 
 } // end of class TaskComment

@@ -1,11 +1,12 @@
 package com.leaven.mmom.entity;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.LocalDateTime;
 
 /**********
  * class: task의 변경사항(staus, priority, dueDate, parentTask, dependencies, budget
@@ -15,23 +16,36 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
  * mapping: task
  * !mapping: project, user
  **********/
-
 @Entity
 @EntityListeners(value = {AuditingEntityListener.class})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class TaskHistory {
+@Getter
+@ToString(exclude = "mmomTask")
+public class HistoryTask {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private Long projectId;
     @ManyToOne(fetch = FetchType.LAZY)
-    private Task task;
-    private String modColumnName;
+    private MmomTask mmomTask;
+
+    private String modColumn;
     private String modType;
     private String modContent;
-    @LastModifiedDate
-    private String modDate;
-    @LastModifiedBy
-    private Long modBy;
 
-} // end of class TaskHistory
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
+
+    @LastModifiedBy
+    private Long updatedBy;
+
+    @Builder
+    public HistoryTask(MmomTask mmomTask, Long pId, String modColum, String modType, String modContent){
+        this.mmomTask = mmomTask;
+        this.projectId = pId;
+        this.modColumn = modColum;
+        this.modType = modType;
+        this.modContent = modContent;
+    } // end of constructor
+} // end of class HistoryTask
