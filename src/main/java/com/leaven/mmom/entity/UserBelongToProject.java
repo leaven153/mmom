@@ -31,10 +31,10 @@ public class UserBelongToProject {
     private Long id;
 
     @ManyToOne
-    private Project project;
+    private MmomProject mmomProject;
 
     @ManyToOne
-    private User user;
+    private MmomUser mmomUser;
 
     @OneToOne(fetch = FetchType.LAZY)
     private ProjectLayout projectLayout;
@@ -52,9 +52,9 @@ public class UserBelongToProject {
     private LocalDateTime userRegDate;
 
     @Builder
-    public UserBelongToProject(Project project, User user, ProjectLayout pLayout, String userPosition, String userCapable){
-        this.project = project;
-        this.user = user;
+    public UserBelongToProject(MmomProject mmomProject, MmomUser mmomUser, ProjectLayout pLayout, String userPosition, String userCapable){
+        this.mmomProject = mmomProject;
+        this.mmomUser = mmomUser;
         this.projectLayout = pLayout;
         this.userPosition = userPosition;
         this.userCapable = userCapable;

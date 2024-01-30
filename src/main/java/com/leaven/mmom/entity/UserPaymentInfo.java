@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
  * class: 유료 서비스를 구독하는 회원의 정보
  * field: id, 서비스id, 회원id, 회원생년월일, 회원연락처, 서비스시작일, 비용납부일, 납부형태
  * mapping: subscribeModule - 서비스id(1명의 회원이 구독하는 서비스는 1개이다.)
+ * !mapping: user (∵객체 payment info를 통해서는 user를 참조하지 않는다..?)
  * **********/
 @Entity
 @NoArgsConstructor (access = AccessLevel.PROTECTED)
@@ -37,7 +38,6 @@ public class UserPaymentInfo extends BaseEntity{
     private Long userId;
     private LocalDate userBirth;
     private String userTel;
-
 
     private LocalDateTime payAt;
     private String paymentType;

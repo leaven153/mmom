@@ -2,6 +2,8 @@ package com.leaven.mmom.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.LastModifiedBy;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -20,7 +22,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access= AccessLevel.PROTECTED)
 @Getter
 @Table(name = "mmom_task")
-public class Task extends BaseEntity{
+@ToString(exclude = "project")
+public class MmomTask extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,10 +31,14 @@ public class Task extends BaseEntity{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="project_id")
-    private Project project;
+    private MmomProject mmomProject;
 
+    @CreatedBy
     private Long taskCreatedBy;
     private String taskName;
+
+    @LastModifiedBy
+    private Long taskUpdatedBy;
 
     @Column(nullable=true)
     private String taskPriority;
@@ -58,7 +65,7 @@ public class Task extends BaseEntity{
     private BigDecimal taskBudget;
 
     @Builder
-    public Task(Long taskCreatedBy, String taskName){
+    public MmomTask(Long taskCreatedBy, String taskName){
         this.taskCreatedBy = taskCreatedBy;
         this.taskName = taskName;
     }
