@@ -10,6 +10,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**********
  * class: 각각의 유저가 속한 프로젝트(프로젝트별 개인설정)
@@ -36,27 +37,52 @@ public class UserBelongToProject {
     @ManyToOne
     private MmomUser mmomUser;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private ProjectLayout projectLayout;
-
-    private String userPosition;
-    private String userCapable;
-
-    private String userProfileImeOrgName;
-    private String userProfileImeNewName;
-    private String userProfileImePath;
+    @Column(nullable = false)
     private String displayName;
+
+    @Column(nullable = false)
+    private String userPosition;
+
+    // invited의 경우 null? (url로 접근 시 capable 확인?)
+    private String userCapable;
 
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime userRegDate;
 
+    private String userProfileImeOrgName;
+    private UUID userProfileImeNewName;
+    private String userProfileImePath;
+
+    @Column(nullable = false)
+    private boolean layoutIsDefault;
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public void setUserProfileImeOrgName(String userProfileImeOrgName) {
+        this.userProfileImeOrgName = userProfileImeOrgName;
+    }
+
+    public void setUserProfileImeNewName(UUID userProfileImeNewName) {
+        this.userProfileImeNewName = userProfileImeNewName;
+    }
+
+    public void setUserProfileImePath(String userProfileImePath) {
+        this.userProfileImePath = userProfileImePath;
+    }
+
+    public void setLayoutIsDefault(boolean layoutIsDefault) {
+        this.layoutIsDefault = layoutIsDefault;
+    }
+
     @Builder
-    public UserBelongToProject(MmomProject mmomProject, MmomUser mmomUser, ProjectLayout pLayout, String userPosition, String userCapable){
+    public UserBelongToProject(MmomProject mmomProject, MmomUser mmomUser, String userPosition, String userCapable, Boolean layoutIsDefault){
         this.mmomProject = mmomProject;
         this.mmomUser = mmomUser;
-        this.projectLayout = pLayout;
         this.userPosition = userPosition;
         this.userCapable = userCapable;
+        this.layoutIsDefault = layoutIsDefault;
     }
 }

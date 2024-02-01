@@ -30,9 +30,14 @@ public class MmomUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String password;
-    private String userName;
+    @Column(nullable = false)
     private String userEmail;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false)
+    private String userName;
 
     @CreatedDate
     private LocalDateTime createdAt;
@@ -41,10 +46,18 @@ public class MmomUser {
     private LocalDateTime lastConnected;
 
     // user가 탈퇴하면 비용정산이 없을 경우, user의 지불관련 정보도 함께 (바로) 삭제한다.
-    // (유저가 탈퇴하면 유저 정보는 미련없이-data분석없이- 날리자.)
+    // (유저가 탈퇴하면 유저 정보는 미련없이-data분석없이- 날리..자?)
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @Column(nullable = true)
     private UserPaymentInfo userPaymentInfo;
+
+    public void setLastConnected(LocalDateTime lastConnected) {
+        this.lastConnected = lastConnected;
+    }
+
+    public void setUserPaymentInfo(UserPaymentInfo userPaymentInfo) {
+        this.userPaymentInfo = userPaymentInfo;
+    }
 
     @Builder
     public MmomUser(String password, String userName, String userEmail){

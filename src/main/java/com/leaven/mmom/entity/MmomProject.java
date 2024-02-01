@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -27,22 +28,26 @@ public class MmomProject extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private Long creator;
 
+    @Column(nullable = false)
     private String projectType;
+
+    @Column(nullable = false)
     private String projectName;
 
-    @Column(nullable = true)
-    private LocalDateTime projectDueDate;
+    @Column(unique = true, nullable = false)
+    private UUID projectURL;
 
-    @Column(nullable = true)
     @ColumnDefault("created") // for ddl // @Column(columnDefinition = "varchar(255) default 'Created'") for
     private String projectStatus;
 
-    @Column(unique = true)
-    private UUID projectURL;
+    private LocalDateTime projectDueDate;
 
-    // 수정이 가능한 필드:
+    private BigDecimal projectBudget;
+
+    // 수정이 가능한 필드(4): type, name, dueDate, status
     public void setProjectType(String projectType) {
         this.projectType = projectType;
     }

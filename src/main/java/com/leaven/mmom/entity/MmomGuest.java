@@ -24,6 +24,7 @@ public class MmomGuest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String guestEmail;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)

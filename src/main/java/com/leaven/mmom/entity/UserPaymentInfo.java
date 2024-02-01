@@ -35,12 +35,47 @@ public class UserPaymentInfo extends BaseEntity{
 //    @OneToOne(mappedBy = "userPaymentInfo", optional = false, fetch = FetchType.LAZY)
 //    private User user;
 
+    @Column(nullable = false)
     private Long userId;
+
+    @Column(nullable = false)
     private LocalDate userBirth;
+
+    @Column(nullable = false)
     private String userTel;
 
+    @Column(nullable = false)
     private LocalDateTime payAt;
+
+    @Column(nullable = false)
     private String paymentType;
+
+    @Column(nullable = false)
+    private String accountNumber;
+
+    public void setSubscribeModule(SubscribeModule subscribeModule) {
+        this.subscribeModule = subscribeModule;
+    }
+
+    public void setUserBirth(LocalDate userBirth) {
+        this.userBirth = userBirth;
+    }
+
+    public void setUserTel(String userTel) {
+        this.userTel = userTel;
+    }
+
+    public void setPayAt(LocalDateTime payAt) {
+        this.payAt = payAt;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public void setPayAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
 
     @Builder
     public UserPaymentInfo(Long userId, LocalDate userBirth, String userTel, LocalDateTime payAt, String paymentType){

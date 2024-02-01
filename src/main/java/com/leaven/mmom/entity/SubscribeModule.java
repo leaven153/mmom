@@ -17,16 +17,15 @@ public class SubscribeModule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String moduleName;
+
     private Long modulePrice;
 
-    @Column(nullable = true)
     private String moduleOpt1;
 
-    @Column(nullable = true)
     private String moduleOpt2;
 
-    @Column(nullable = true)
     private String moduleOpt3;
 
     @Builder

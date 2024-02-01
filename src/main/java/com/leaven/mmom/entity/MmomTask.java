@@ -35,38 +35,64 @@ public class MmomTask extends BaseEntity{
 
     @CreatedBy
     private Long taskCreatedBy;
-    private String taskName;
-
     @LastModifiedBy
     private Long taskUpdatedBy;
 
-    @Column(nullable=true)
+    @Column(nullable = false)
+    private String taskName;
+
     private String taskPriority;
-
-    @Column(nullable=true)
     private String taskStatus;
-
-    @Column(nullable=true)
     private LocalDate taskStartDate;
-
-    @Column(nullable=true)
     private LocalDateTime taskDueDate;
-
-    @Column(nullable=true)
     private Long taskParentId;
-
-    @Column(nullable=true)
     private Long taskPrevId;
-
-    @Column(nullable=true)
     private Long taskNextId;
-
-    @Column(nullable=true)
     private BigDecimal taskBudget;
 
+
+    // 수정 가능한 필드(8): name, priority, status, startDate, dueDate, parent, prev, next, budget
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
+    }
+
+    public void setTaskPriority(String taskPriority) {
+        this.taskPriority = taskPriority;
+    }
+
+    public void setTaskStatus(String taskStatus) {
+        this.taskStatus = taskStatus;
+    }
+
+    public void setTaskStartDate(LocalDate taskStartDate) {
+        this.taskStartDate = taskStartDate;
+    }
+
+    public void setTaskDueDate(LocalDateTime taskDueDate) {
+        this.taskDueDate = taskDueDate;
+    }
+
+    public void setTaskParentId(Long taskParentId) {
+        this.taskParentId = taskParentId;
+    }
+
+    public void setTaskPrevId(Long taskPrevId) {
+        this.taskPrevId = taskPrevId;
+    }
+
+    public void setTaskNextId(Long taskNextId) {
+        this.taskNextId = taskNextId;
+    }
+
+    public void setTaskBudget(BigDecimal taskBudget) {
+        this.taskBudget = taskBudget;
+    }
+
+    // 생성 시 필수 입력 요소
     @Builder
     public MmomTask(Long taskCreatedBy, String taskName){
         this.taskCreatedBy = taskCreatedBy;
         this.taskName = taskName;
-    }
-}
+    } // end of Constructor (required field)
+
+} // end of class MmomTask

@@ -25,6 +25,7 @@ public class TaskAssignment{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private Long projectId;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -35,10 +36,15 @@ public class TaskAssignment{
     @JoinColumn(name = "user_id")
     private MmomUser mmomUser;
 
+    @Column(nullable = false)
     private String taskUserType;
 
     @CreatedDate
     private LocalDateTime CreatedAt;
+
+    public void setTaskUserType(String taskUserType) {
+        this.taskUserType = taskUserType;
+    }
 
     @Builder
     public TaskAssignment(Long pId, MmomTask mmomTask, MmomUser mmomUser, String taskUserType){

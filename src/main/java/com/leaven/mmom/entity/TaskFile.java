@@ -29,9 +29,15 @@ public class TaskFile extends BaseEntity{
     @JoinColumn(name = "user_id")
     private MmomUser mmomUser;
 
+    @Column(nullable = false)
     private String fileOriginName;
+
+    @Column(nullable = false)
     private String fileNewName;
+
+    @Column(nullable = false)
     private String filePath;
+
 
     @Builder
     public TaskFile(Long pId, MmomTask mmomTask, MmomUser mmomUser, String fOriginName, String fileNewName, String fPath){

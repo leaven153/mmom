@@ -20,6 +20,7 @@ public class TaskComment extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private Long projectId;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -30,7 +31,12 @@ public class TaskComment extends BaseEntity{
     @JoinColumn(name = "user_id")
     private MmomUser mmomUser;
 
+    @Column(nullable = false)
     private String comment;
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
     @Builder
     public TaskComment(Long pId, MmomTask mmomTask, MmomUser mmomUser, String comment){
