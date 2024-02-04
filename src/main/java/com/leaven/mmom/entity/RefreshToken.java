@@ -30,6 +30,6 @@ public class RefreshToken extends BaseEntity{
     public RefreshToken(Long userId, String refreshToken){
         this.userId = userId;
         this.refreshToken = refreshToken;
-    }
+    } // end of constructor
 
-}
+} // end of class RefreshToken

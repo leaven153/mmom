@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -31,12 +32,8 @@ public class MmomTask extends BaseEntity{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="project_id")
-    private MmomProject mmomProject;
+    private MmomProject project;
 
-    @CreatedBy
-    private Long taskCreatedBy;
-    @LastModifiedBy
-    private Long taskUpdatedBy;
 
     @Column(nullable = false)
     private String taskName;
@@ -49,7 +46,7 @@ public class MmomTask extends BaseEntity{
     private Long taskPrevId;
     private Long taskNextId;
     private BigDecimal taskBudget;
-
+    private Long updatedBy;
 
     // 수정 가능한 필드(8): name, priority, status, startDate, dueDate, parent, prev, next, budget
     public void setTaskName(String taskName) {
@@ -88,11 +85,19 @@ public class MmomTask extends BaseEntity{
         this.taskBudget = taskBudget;
     }
 
-    // 생성 시 필수 입력 요소
-    @Builder
-    public MmomTask(Long taskCreatedBy, String taskName){
-        this.taskCreatedBy = taskCreatedBy;
-        this.taskName = taskName;
-    } // end of Constructor (required field)
 
+    @Builder
+    public MmomTask(MmomProject project, Long updatedBy, String taskName, String taskPriority, String taskStatus, LocalDate taskStartDate, LocalDateTime taskDueDate, Long taskParentId, Long taskPrevId, Long taskNextId, BigDecimal taskBudget) {
+        this.project = project;
+        this.updatedBy = updatedBy;
+        this.taskName = taskName;
+        this.taskPriority = taskPriority;
+        this.taskStatus = taskStatus;
+        this.taskStartDate = taskStartDate;
+        this.taskDueDate = taskDueDate;
+        this.taskParentId = taskParentId;
+        this.taskPrevId = taskPrevId;
+        this.taskNextId = taskNextId;
+        this.taskBudget = taskBudget;
+    }
 } // end of class MmomTask

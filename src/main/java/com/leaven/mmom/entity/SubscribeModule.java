@@ -20,6 +20,7 @@ public class SubscribeModule {
     @Column(nullable = false)
     private String moduleName;
 
+    @Column(nullable = false)
     private Long modulePrice;
 
     private String moduleOpt1;

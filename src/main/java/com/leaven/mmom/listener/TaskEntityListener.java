@@ -20,11 +20,10 @@ import jakarta.transaction.Transactional;
 @Transactional
 public class TaskEntityListener {
 
-    @PreUpdate
-    public void preUpdateTask(Object o){
-        HistoryTaskRepository historyTaskRepository = BeanUtils.getBean(HistoryTaskRepository.class);
-        MmomTask mmomTask = (MmomTask) o;
-
-
-    } // end of preUpdateTast
+//    @PreUpdate
+//    public void preUpdateTask(Object o){
+//        HistoryTaskRepository historyTaskRepository = BeanUtils.getBean(HistoryTaskRepository.class);
+//        MmomTask mmomTask = (MmomTask) o;
+//
+//    } // end of preUpdateTast
 }

@@ -14,7 +14,7 @@ import lombok.*;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-@ToString(exclude = {"task", "user"})
+@ToString(exclude = {"task"})
 public class TaskComment extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,11 +25,10 @@ public class TaskComment extends BaseEntity{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "task_id")
-    private MmomTask mmomTask;
+    private MmomTask task;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private MmomUser mmomUser;
+    @Column(nullable = false)
+    private Long userId;
 
     @Column(nullable = false)
     private String comment;
@@ -39,10 +38,10 @@ public class TaskComment extends BaseEntity{
     }
 
     @Builder
-    public TaskComment(Long pId, MmomTask mmomTask, MmomUser mmomUser, String comment){
+    public TaskComment(Long pId, MmomTask task, Long uId, String comment){
         this.projectId = pId;
-        this.mmomTask = mmomTask;
-        this.mmomUser = mmomUser;
+        this.task = task;
+        this.userId = uId;
         this.comment = comment;
     } // end of constructor
 

@@ -24,6 +24,7 @@ import java.time.LocalDateTime;
 @EntityListeners(value = {AuditingEntityListener.class})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@ToString(exclude = "userPaymentInfo")
 public class MmomUser {
 
     @Id
@@ -47,8 +48,7 @@ public class MmomUser {
 
     // user가 탈퇴하면 비용정산이 없을 경우, user의 지불관련 정보도 함께 (바로) 삭제한다.
     // (유저가 탈퇴하면 유저 정보는 미련없이-data분석없이- 날리..자?)
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @Column(nullable = true)
+    @OneToOne(fetch = FetchType.LAZY)
     private UserPaymentInfo userPaymentInfo;
 
     public void setLastConnected(LocalDateTime lastConnected) {

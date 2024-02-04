@@ -8,6 +8,7 @@ import org.springframework.security.access.method.P;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "project_listView_column")
 public class ProjectListViewColumn extends BaseEntity{
 
     @Id
@@ -15,36 +16,38 @@ public class ProjectListViewColumn extends BaseEntity{
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @Column(name = "ubp_id", nullable = false)
     private UserBelongToProject ubp;
-
-    @Column(nullable = false)
-    private String columnName;
 
     @Column(nullable = false)
     private boolean columnShow;
 
     @Column(nullable = false)
-    private String columnType;
+    private Integer columnLocation;
 
     @Column(nullable = false)
-    private Integer columnLocation;
+    private String columnName;
+
+    @Column(nullable = false)
+    private String columnType;
 
     private Integer columnWidth;
 
-    public void setColumnName(String columnName) {
-        this.columnName = columnName;
-    }
 
     public void setColumnShow(boolean columnShow) {
         this.columnShow = columnShow;
     }
 
-    public void setColumnType(String columnType) {
-        this.columnType = columnType;
-    }
-
     public void setColumnLocation(Integer columnLocation) {
         this.columnLocation = columnLocation;
+    }
+
+    public void setColumnName(String columnName) {
+        this.columnName = columnName;
+    }
+
+    public void setColumnType(String columnType) {
+        this.columnType = columnType;
     }
 
     public void setColumnWidth(Integer columnWidth) {
@@ -59,5 +62,6 @@ public class ProjectListViewColumn extends BaseEntity{
         this.columnType = columnType;
         this.columnLocation = columnLocation;
         this.columnWidth = columnWidth;
-    }
+    } // end of constructor
+
 } // end of class ProjectListViewColumn

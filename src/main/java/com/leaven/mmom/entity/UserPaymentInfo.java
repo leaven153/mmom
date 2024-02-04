@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor (access = AccessLevel.PROTECTED)
 @Getter
+@ToString(exclude = "subscribeModule")
 public class UserPaymentInfo extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

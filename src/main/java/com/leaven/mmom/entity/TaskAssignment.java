@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @EntityListeners(value = {AuditingEntityListener.class})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-@ToString(exclude = {"task", "user"})
+@ToString(exclude = {"task"})
 public class TaskAssignment{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,27 +30,26 @@ public class TaskAssignment{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "task_id")
-    private MmomTask mmomTask;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private MmomUser mmomUser;
+    private MmomTask task;
 
     @Column(nullable = false)
-    private String taskUserType;
+    private Long userId;
+
+    @Column(nullable = false)
+    private String taskUserRole;
 
     @CreatedDate
     private LocalDateTime CreatedAt;
 
-    public void setTaskUserType(String taskUserType) {
-        this.taskUserType = taskUserType;
+    public void setTaskUserType(String taskUserRole) {
+        this.taskUserRole = taskUserRole;
     }
 
     @Builder
-    public TaskAssignment(Long pId, MmomTask mmomTask, MmomUser mmomUser, String taskUserType){
+    public TaskAssignment(Long pId, MmomTask task, Long uId, String taskUserRole){
         this.projectId = pId;
-        this.mmomTask = mmomTask;
-        this.mmomUser = mmomUser;
-        this.taskUserType = taskUserType;
+        this.task = task;
+        this.userId = uId;
+        this.taskUserRole = taskUserRole;
     }// end of constructor()
 } // end of class TaskAssignment

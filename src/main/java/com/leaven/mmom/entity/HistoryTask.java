@@ -20,18 +20,26 @@ import java.time.LocalDateTime;
 @EntityListeners(value = {AuditingEntityListener.class})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-@ToString(exclude = "mmomTask")
+@ToString(exclude = "task")
 public class HistoryTask {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private Long projectId;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private MmomTask mmomTask;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(name="task_id")
+    private MmomTask task;
+
+    @Column(nullable = false)
     private String modColumn;
+
+    @Column(nullable = false)
     private String modType;
+
+    @Column(nullable = false)
     private String modContent;
 
     @LastModifiedDate
@@ -41,8 +49,8 @@ public class HistoryTask {
     private Long updatedBy;
 
     @Builder
-    public HistoryTask(MmomTask mmomTask, Long pId, String modColum, String modType, String modContent){
-        this.mmomTask = mmomTask;
+    public HistoryTask(MmomTask task, Long pId, String modColum, String modType, String modContent){
+        this.task = task;
         this.projectId = pId;
         this.modColumn = modColum;
         this.modType = modType;
