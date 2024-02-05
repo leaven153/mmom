@@ -30,7 +30,7 @@ public class HistoryTask {
     private Long projectId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name="task_id")
+    @JoinColumn(name="task_id", nullable = false)
     private MmomTask task;
 
     @Column(nullable = false)
@@ -43,9 +43,11 @@ public class HistoryTask {
     private String modContent;
 
     @LastModifiedDate
+    @Column(nullable = false)
     private LocalDateTime updatedAt;
 
     @LastModifiedBy
+    @Column(nullable = false)
     private Long updatedBy;
 
     @Builder

@@ -31,7 +31,7 @@ public class MmomTask extends BaseEntity{
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="project_id")
+    @JoinColumn(name="project_id", nullable = false)
     private MmomProject project;
 
 

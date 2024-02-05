@@ -29,7 +29,7 @@ public class TaskAssignment{
     private Long projectId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "task_id")
+    @JoinColumn(name = "task_id", nullable = false)
     private MmomTask task;
 
     @Column(nullable = false)
@@ -39,6 +39,7 @@ public class TaskAssignment{
     private String taskUserRole;
 
     @CreatedDate
+    @Column(nullable = false)
     private LocalDateTime CreatedAt;
 
     public void setTaskUserType(String taskUserRole) {

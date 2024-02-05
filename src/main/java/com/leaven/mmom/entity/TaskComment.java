@@ -24,7 +24,7 @@ public class TaskComment extends BaseEntity{
     private Long projectId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "task_id")
+    @JoinColumn(name = "task_id", nullable = false)
     private MmomTask task;
 
     @Column(nullable = false)

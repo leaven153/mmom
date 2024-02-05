@@ -4,19 +4,17 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
-import org.springframework.security.access.method.P;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "project_listView_column")
-public class ProjectListViewColumn extends BaseEntity{
+public class ProjectViewList{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "ubp_id", nullable = false)
+    @JoinColumn(name = "ubp_id", nullable = false)
     private UserBelongToProject ubp;
 
     @Column(nullable = false)
@@ -55,7 +53,7 @@ public class ProjectListViewColumn extends BaseEntity{
     }
 
     @Builder
-    public ProjectListViewColumn(UserBelongToProject ubp, String columnName, boolean columnShow, String columnType, Integer columnLocation, Integer columnWidth) {
+    public ProjectViewList(UserBelongToProject ubp, String columnName, boolean columnShow, String columnType, Integer columnLocation, Integer columnWidth) {
         this.ubp = ubp;
         this.columnName = columnName;
         this.columnShow = columnShow;

@@ -43,7 +43,8 @@ public class MmomProject extends BaseEntity{
     @Column(unique = true, nullable = false)
     private UUID projectURL;
 
-    @ColumnDefault("activated") // for ddl // @Column(columnDefinition = "varchar(255) default 'Created'") for
+    @Column(nullable = false)
+    @ColumnDefault("'activated'") // for ddl // @Column(columnDefinition = "varchar(255) default 'Created'") for
     private String projectStatus;
 
     private LocalDateTime projectDueDate;

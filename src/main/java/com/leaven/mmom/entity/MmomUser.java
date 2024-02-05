@@ -41,6 +41,7 @@ public class MmomUser {
     private String userName;
 
     @CreatedDate
+    @Column(nullable = false)
     private LocalDateTime createdAt;
 
     // 로그인할 때마다 now를 넣어줘야되겠네?!

@@ -25,18 +25,17 @@ import java.util.UUID;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @EntityListeners(value = {AuditingEntityListener.class})
-@Table(name="user_belongTo_project")
 @ToString(exclude = {"project", "user"})
 public class UserBelongToProject {
     @Id
     private Long id;
 
     @ManyToOne
-    @Column(name = "project_id")
+    @JoinColumn(name = "project_id", nullable = false)
     private MmomProject project;
 
     @ManyToOne
-    @Column(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private MmomUser user;
 
     @Column(nullable = false)
@@ -57,7 +56,7 @@ public class UserBelongToProject {
     private String userProfileImgPath;
 
     @Column(nullable = false)
-    @ColumnDefault("list")
+    @ColumnDefault("'list'")
     private String projectView;
 
 

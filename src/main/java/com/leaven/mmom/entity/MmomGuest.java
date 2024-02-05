@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @EntityListeners(value = {AuditingEntityListener.class})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-@ToString(exclude = "projectId")
+@ToString(exclude = "project")
 public class MmomGuest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,15 +28,16 @@ public class MmomGuest {
     private String guestEmail;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @JoinColumn(name="project_id")
-    private MmomProject projectId;
+    @JoinColumn(name="project_id", nullable = false)
+    private MmomProject project;
 
     @CreatedDate
+    @Column(nullable = false)
     private LocalDateTime invitedAt;
 
     @Builder
-    public MmomGuest(String gEmail, MmomProject pId){
+    public MmomGuest(String gEmail, MmomProject project){
         this.guestEmail = gEmail;
-        this.projectId = pId;
+        this.project = project;
     } // end of constructor
 } // end of class Guest

@@ -22,6 +22,7 @@ public class UserPaymentInfo extends BaseEntity{
     private Long id;
 
     // 유료 회원일 경우, 구독하는 유료 서비스 정보 가져온다.
+    // 유료 서비스 구독은 선택적이기 때문에 default인 nullable = true 임!
     // OneToOne도 EAGER가 기본값이다.
     @OneToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "subscribe_module_id")
