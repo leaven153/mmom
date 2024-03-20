@@ -16,9 +16,9 @@ import java.util.UUID;
  * field: id, 생성자id, 프로젝트타입(solo-private, solo-shared, team), 프로젝트명,
  *        프로젝트url(uuid)
  *        프로젝트마감일,
- *        프로젝트상태(activated/finished/deactivated/discard/archived(유료)),
+ *        프로젝트상태(activated/finished/deactivated/discard/archived(유료, ReadOnly상태가 된다)),
  *        프로젝트에 할당된 예산
- *        생성일자, 최종수정일
+ *        생성일자, 최종수정일 (BaseEntity)
  * mapping:
  * !mapping:
  **********/
