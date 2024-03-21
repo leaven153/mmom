@@ -63,14 +63,6 @@ public class MmomTask extends BaseEntity{
     @Column
     private BigDecimal taskBudget;
 
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime createdAt;
-
-    @LastModifiedDate
-    @Column
-    private LocalDateTime updatedAt;
-
     @Column
     private Long updatedBy;
 

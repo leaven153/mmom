@@ -57,7 +57,7 @@ public class UserBelongToProject {
     private LocalDateTime userRegDate;
 
     @Column
-    private LocalDateTime connectedAt;
+    private LocalDateTime visitedAt;
 
     @Column(nullable = false)
     @ColumnDefault("'list'")
@@ -81,13 +81,13 @@ public class UserBelongToProject {
     }
 
     @Builder
-    public UserBelongToProject(MmomProject project, MmomUser user, String userPosition, String userCapacity, LocalDateTime userRegDate, LocalDateTime connectedAt, String projectView){
+    public UserBelongToProject(MmomProject project, MmomUser user, String userPosition, String userCapacity, LocalDateTime userRegDate, LocalDateTime visitedAt, String projectView){
         this.project = project;
         this.user = user;
         this.userPosition = userPosition;
         this.userCapacity = userCapacity;
         this.userRegDate = userRegDate;
-        this.connectedAt = connectedAt;
+        this.visitedAt = visitedAt;
         this.projectView = projectView;
     }
 }
