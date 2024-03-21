@@ -8,8 +8,14 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.time.LocalDateTime;
 
 /**********
- * class: 비회원 초대 시 사용
- * field: id, 비회원의 이메일주소, 초대한프로젝트id, 초대한시각 (id를 제외한 3개의 컬럼은 url에 parameter로 포함된다.)
+ * class: 회원/비회원 프로젝트 초대 시 사용. checkedAt
+ * field: id,
+ *        초대받을 분의 이메일주소,
+ *        초대한프로젝트id,
+ *        초대한시각 (id를 제외한 3개의 컬럼은 url에 parameter로 포함된다.)
+ *        부여된 position - partner/admin/member
+ *        acceptance (회원의 경우) 수락여부 - Y/N
+ *        checkedAt (회원의 경우) 수락여부 결정한 시각
  * mapping: project(OneToOne)
  * !mapping:
  **********/
@@ -19,7 +25,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @ToString(exclude = "project")
-public class MmomGuest {
+public class ProjectInvitation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -36,7 +42,7 @@ public class MmomGuest {
     private LocalDateTime invitedAt;
 
     @Builder
-    public MmomGuest(String gEmail, MmomProject project){
+    public ProjectInvitation(String gEmail, MmomProject project){
         this.guestEmail = gEmail;
         this.project = project;
     } // end of constructor

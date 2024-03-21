@@ -9,10 +9,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.time.LocalDateTime;
 
 /**********
- * class: task의 변경사항(staus, priority, dueDate, parentTask, dependencies, budget
- *        assignee, file attachment, comment)을 감지하여 저장하는 history 엔티티(테이블)
+ * class: task의 변경사항(status, priority, dueDate, parentTask, budget
+ *        assignee, file attachment, comment)을 저장하는 history 엔티티(테이블)
  *        EntityListener로 값이 저장된다.
- * field: id, projectId, taskId, 변경된컬럼명, 변경유형(Insert, Update, Delete), 변경내용, 변경일시, 변경한유저id
+ * field: id, projectId, taskId, 변경된항목, 변경유형(생성/등록Insert, Update, Delete), 변경내용, 변경일시, 변경한유저id
  * mapping: task
  * !mapping: project, user
  **********/
@@ -34,7 +34,7 @@ public class HistoryTask {
     private MmomTask task;
 
     @Column(nullable = false)
-    private String modColumn;
+    private String modItem;
 
     @Column(nullable = false)
     private String modType;
@@ -51,10 +51,10 @@ public class HistoryTask {
     private Long updatedBy;
 
     @Builder
-    public HistoryTask(MmomTask task, Long pId, String modColum, String modType, String modContent){
+    public HistoryTask(MmomTask task, Long pId, String modItem, String modType, String modContent){
         this.task = task;
         this.projectId = pId;
-        this.modColumn = modColum;
+        this.modItem = modItem;
         this.modType = modType;
         this.modContent = modContent;
     } // end of constructor

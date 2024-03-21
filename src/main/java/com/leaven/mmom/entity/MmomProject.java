@@ -44,14 +44,16 @@ public class MmomProject extends BaseEntity{
     private UUID projectURL;
 
     @Column(nullable = false)
-    @ColumnDefault("'activated'") // for ddl // @Column(columnDefinition = "varchar(255) default 'Created'") for
+    @ColumnDefault("'activated'") // @Column(columnDefinition = "varchar(255) default 'Created'") for ddl
     private String projectStatus;
 
+    @Column
     private LocalDateTime projectDueDate;
 
+    @Column
     private BigDecimal projectBudget;
 
-    // 수정이 가능한 필드(4): type, name, dueDate, status
+    // 수정이 가능한 필드(4): type, name, status, dueDate, budget
     public void setProjectType(String projectType) {
         this.projectType = projectType;
     }
